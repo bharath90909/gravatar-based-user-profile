@@ -5,41 +5,40 @@ import "../ui/css/ProfileCard.css";
 import Loader from "./Loader";
 
 function ProfileCard({ formData }) {
-
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  async function fetchProfile(){
-      const hash = md5(formData.email.trim().toLowerCase());
-      const gravatarUrl = `https://en.gravatar.com/${hash}.json`;
-    
-      try {
-        // fetching user gravatar details
-        const response = await fetch(gravatarUrl);
-        if (!response.ok) throw new Error("No Gravatar profile found");
+  async function fetchProfile() {
+    const hash = md5(formData.email.trim().toLowerCase());
+    const gravatarUrl = `https://en.gravatar.com/${hash}.json`;
 
-        const data = await response.json();
-        const gravatarProfile = data.entry[0];
+    try {
+      // fetching user gravatar details
+      const response = await fetch(gravatarUrl);
+      if (!response.ok) throw new Error("No Gravatar profile found");
 
-        setProfileData({
-          avatar: gravatarProfile.thumbnailUrl || fallBackImg,
-          fullName: gravatarProfile.displayName || formData.fullName,
-          username: gravatarProfile.preferredUsername || formData.username,
-          location: gravatarProfile.currentLocation || formData.location,
-          email: formData.email,
-          phone: formData.phone,
-          bio: gravatarProfile.aboutMe || formData.bio,
-          website: formData.website,
-        });
-      } catch (error) {
-        // if email not registered with gravatar then setting profile data with form data itself
-        setProfileData({
-          avatar: fallBackImg, // using fallBackImage
-          ...formData,
-        });
-      } finally {
-        setLoading(false);
-      }
+      const data = await response.json();
+      const gravatarProfile = data?.entry[0];
+
+      setProfileData({
+        avatar: gravatarProfile?.thumbnailUrl || fallBackImg,
+        fullName: gravatarProfile?.displayName || formData.fullName,
+        username: gravatarProfile?.preferredUsername || formData.username,
+        location: gravatarProfile?.currentLocation || formData.location,
+        email: gravatarProfile?.emails[0]?.value || formData.email,
+        phone: formData.phone,
+        bio: gravatarProfile?.aboutMe || formData.bio,
+        website: gravatarProfile?.accounts[0]?.url || formData.website,
+      });
+    } catch (error) {
+      // if email is not registered with gravatar then setting profile data with form data itself
+      setProfileData({
+        ...formData,
+        avatar: fallBackImg, // using fallBackImage
+      });
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -78,7 +77,7 @@ function ProfileCard({ formData }) {
           className="profile-card__website"
           target="_blank"
         >
-          Visit Website 
+          Visit Website
         </a>
       )}
     </div>
