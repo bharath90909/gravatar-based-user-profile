@@ -1,0 +1,48 @@
+.skeleton > * {
+  background: hsl(200, 20%, 85%);
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 90%);
+  }
+  50% {
+    background-color: hsl(200, 20%, 95%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 90%);
+  }
+}
+
+.skeleton__avatar {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.skeleton__name,
+.skeleton__meta,
+.skeleton__description {
+  margin: 0 auto;
+  border-radius: 4px;
+}
+.skeleton__name {
+  height: 40px;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+.skeleton__meta {
+  height: 21px;
+  max-width: 240px;
+  margin-bottom: 10px;
+}
+
+.skeleton__description {
+  height: 30px;
+  max-width: 352px;
+  margin: 16px auto;
+}
