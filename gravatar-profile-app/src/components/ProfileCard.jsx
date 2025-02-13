@@ -18,17 +18,17 @@ function ProfileCard({ formData }) {
       if (!response.ok) throw new Error("No Gravatar profile found");
 
       const data = await response.json();
-      const gravatarProfile = data?.entry[0];
+      const gravatarProfile = data.entry[0];
 
       setProfileData({
-        avatar: gravatarProfile?.thumbnailUrl || fallBackImg,
-        fullName: gravatarProfile?.displayName || formData.fullName,
-        username: gravatarProfile?.preferredUsername || formData.username,
-        location: gravatarProfile?.currentLocation || formData.location,
-        email: gravatarProfile?.emails[0]?.value || formData.email,
-        phone: formData.phone,
-        bio: gravatarProfile?.aboutMe || formData.bio,
-        website: gravatarProfile?.accounts[0]?.url || formData.website,
+        avatar: gravatarProfile.thumbnailUrl || fallBackImg,
+        fullName: gravatarProfile.displayName || formData.fullName,
+        username: gravatarProfile.preferredUsername || formData.username,
+        location: gravatarProfile.currentLocation || formData.location,
+        email: gravatarProfile.emails[0].value || formData.email,
+        phone: gravatarProfile.phoneNumbers[0].value || formData.phone,
+        bio: gravatarProfile.aboutMe || formData.bio,
+        website: gravatarProfile.accounts[0].url || formData.website,
       });
     } catch (error) {
       // if email is not registered with gravatar then setting profile data with form data itself
