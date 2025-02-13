@@ -24,15 +24,15 @@ A **React-based** profile card generator that fetches user details from **Gravat
 4. **Profile card appears** with details + **"Visit Profile"** button  
 
 ## Demo & Deployment
-**Video Walkthrough** : https://youtu.be/vMnALOjtqrk
-**Live Deployment** : https://keen-cheesecake-b3ef29.netlify.app/
+- **Video Walkthrough** : https://youtu.be/vMnALOjtqrk
+- **Live Deployment** : https://keen-cheesecake-b3ef29.netlify.app/
 
 ## Installation & Setup  
-Clone the repository and install dependencies:  
-git clone https://github.com/bharath90909/gravatar-based-user-profile.git
-cd gravatar-profile-app
-npm install
-npm install react-hook-form zod @hookform/resolvers
-npm install blueimp-md5
-npm start
+- Clone the repository and install dependencies:  
+- git clone https://github.com/bharath90909/gravatar-based-user-profile.git
+- cd gravatar-profile-app
+- npm install
+- npm install react-hook-form zod @hookform/resolvers
+- npm install blueimp-md5
+- npm start
 
